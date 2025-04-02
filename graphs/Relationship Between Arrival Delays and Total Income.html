@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-c63e786fbcc125d54ed004d7f192c7ed"}, "mark": {"type": "circle", "size": 100}, "encoding": {"color": {"condition": {"param": "param_2", "field": "year", "type": "nominal"}, "value": "lightgrey"}, "tooltip": [{"field": "year", "type": "quantitative"}, {"field": "arr_del15", "type": "quantitative"}, {"field": "TOTAL", "type": "nominal"}], "x": {"field": "arr_del15", "title": "Arrival Delays", "type": "quantitative"}, "y": {"field": "DOMESTIC", "title": "Income", "type": "quantitative"}}, "params": [{"name": "param_2", "select": {"type": "point", "fields": ["year"]}, "bind": {"input": "select", "options": [null, 2013.0, 2014.0, 2015.0, 2016.0, 2017.0, 2018.0, 2019.0, 2020.0, 2021.0, 2022.0, 2023.0], "labels": ["All", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"], "name": "Year: "}}], "title": "Relationship Between Arrival Delays and Total Income", "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-c63e786fbcc125d54ed004d7f192c7ed": [{"year": 2013, "arr_del15": 490607.0, "carrier_ct": 142758.4, "weather_ct": 12413.12, "nas_ct": 141990.61, "security_ct": 995.88, "late_aircraft_ct": 192450.53, "TOTAL": "12,711,213", "DOMESTIC": 12711213}, {"year": 2014, "arr_del15": 1233072.0, "carrier_ct": 353456.78, "weather_ct": 34740.25, "nas_ct": 366395.57, "security_ct": 1607.12, "late_aircraft_ct": 476872.23, "TOTAL": "8,440,634", "DOMESTIC": 8440634}, {"year": 2015, "arr_del15": 1055756.0, "carrier_ct": 320002.53, "weather_ct": 35746.0, "nas_ct": 314713.3, "security_ct": 1910.66, "late_aircraft_ct": 383384.23, "TOTAL": "26,379,931", "DOMESTIC": 26379931}, {"year": 2016, "arr_del15": 956948.0, "carrier_ct": 280057.4, "weather_ct": 28409.96, "nas_ct": 299598.01, "security_ct": 1780.31, "late_aircraft_ct": 347103.4, "TOTAL": "15,609,744", "DOMESTIC": 15609744}, {"year": 2017, "arr_del15": 1022598.0, "carrier_ct": 282104.97, "weather_ct": 28347.51, "nas_ct": 328882.2, "security_ct": 1767.12, "late_aircraft_ct": 381495.33, "TOTAL": "16,804,481", "DOMESTIC": 16804481}, {"year": 2018, "arr_del15": 1343977.0, "carrier_ct": 369664.35, "weather_ct": 47039.67, "nas_ct": 436716.25, "security_ct": 2486.05, "late_aircraft_ct": 488071.46, "TOTAL": "15,429,071", "DOMESTIC": 15429071}, {"year": 2019, "arr_del15": 1381152.0, "carrier_ct": 384464.05, "weather_ct": 46063.36, "nas_ct": 437536.64, "security_ct": 2608.67, "late_aircraft_ct": 510480.23, "TOTAL": "16,432,523", "DOMESTIC": 16432523}, {"year": 2020, "arr_del15": 428776.0, "carrier_ct": 155441.8, "weather_ct": 19534.37, "nas_ct": 143290.69, "security_ct": 1528.6299999999999, "late_aircraft_ct": 108981.37, "TOTAL": "-30,902,984", "DOMESTIC": -30902984}, {"year": 2021, "arr_del15": 1001391.0, "carrier_ct": 389656.93, "weather_ct": 43861.62, "nas_ct": 244890.6, "security_ct": 4589.28, "late_aircraft_ct": 318393.61, "TOTAL": "1,135,295", "DOMESTIC": 1135295}, {"year": 2022, "arr_del15": 1365409.0, "carrier_ct": 512969.55, "weather_ct": 50030.14, "nas_ct": 327687.53, "security_ct": 4117.46, "late_aircraft_ct": 470605.09, "TOTAL": "3,936,715", "DOMESTIC": 3936715}, {"year": 2023, "arr_del15": 1013564.0, "carrier_ct": 338286.31, "weather_ct": 36660.61, "nas_ct": 259939.89, "security_ct": 3031.9, "late_aircraft_ct": 375645.99, "TOTAL": "8,830,484", "DOMESTIC": 8830484}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

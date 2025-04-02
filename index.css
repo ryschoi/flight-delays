@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: auto;
-  max-width: 880px;
+  max-width: 920px;
   margin-top: 40px;
   margin-bottom: 100px;
 }
@@ -36,6 +36,8 @@ body {
   font-weight: 400;
   line-height: 22px;
   color: #222222;
+
+  box-sizing: border-box;
 }
 
 img {
@@ -104,7 +106,7 @@ h1 {
 }
 
 .graph-text {
-  max-width: 280px;
+  max-width: 600px;
 }
 
 .subheading {
@@ -112,4 +114,28 @@ h1 {
   font-weight: 600;
   line-height: 24px;
   margin-bottom: 8px;
+}
+
+
+
+.all-graphs-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.graph-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inline {
+  display: inline;
+}
+
+iframe {
+  overflow: hidden;
+  border: 0;
+  /* transform: scale(0.75); */
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"value": "blue"}, "tooltip": [{"field": "year", "type": "quantitative"}, {"field": "arr_flights", "type": "quantitative"}, {"field": "Total Airtraffic", "type": "quantitative"}, {"field": "Traffic Percentage", "type": "quantitative"}], "x": {"axis": {"labelAngle": -45}, "field": "year", "title": "Year", "type": "ordinal"}, "y": {"field": "arr_flights", "title": "Total Arrival Flights", "type": "quantitative"}}, "title": "Arrival Flights and Air Traffic by Year"}, {"mark": {"type": "bar"}, "encoding": {"color": {"value": "red"}, "tooltip": [{"field": "year", "type": "quantitative"}, {"field": "arr_flights", "type": "quantitative"}, {"field": "Total Airtraffic", "type": "quantitative"}, {"field": "Traffic Percentage", "type": "quantitative"}], "x": {"field": "year", "title": "Year", "type": "ordinal"}, "y": {"field": "Total Airtraffic", "title": "Total Air Traffic", "type": "quantitative"}}}], "data": {"name": "data-aae1d7f7f7622c3d94a199df13679aab"}, "height": 400, "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-aae1d7f7f7622c3d94a199df13679aab": [{"year": 2013, "arr_flights": 2616300.0, "Total Airtraffic": 528724.0, "Traffic Percentage": 0.2}, {"year": 2014, "arr_flights": 5786095.0, "Total Airtraffic": 1374123.0, "Traffic Percentage": 0.24}, {"year": 2015, "arr_flights": 5784223.0, "Total Airtraffic": 1160529.0, "Traffic Percentage": 0.2}, {"year": 2016, "arr_flights": 5581446.0, "Total Airtraffic": 1036134.0, "Traffic Percentage": 0.19}, {"year": 2017, "arr_flights": 5641978.0, "Total Airtraffic": 1116239.0, "Traffic Percentage": 0.2}, {"year": 2018, "arr_flights": 7174246.0, "Total Airtraffic": 1478113.0, "Traffic Percentage": 0.21}, {"year": 2019, "arr_flights": 7385996.0, "Total Airtraffic": 1534625.0, "Traffic Percentage": 0.21}, {"year": 2020, "arr_flights": 4662190.0, "Total Airtraffic": 714562.0, "Traffic Percentage": 0.15}, {"year": 2021, "arr_flights": 5954951.0, "Total Airtraffic": 1118049.0, "Traffic Percentage": 0.19}, {"year": 2022, "arr_flights": 6688248.0, "Total Airtraffic": 1561513.0, "Traffic Percentage": 0.23}, {"year": 2023, "arr_flights": 4515225.0, "Total Airtraffic": 1101363.0, "Traffic Percentage": 0.24}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
