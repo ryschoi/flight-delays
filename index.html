@@ -17,37 +17,42 @@
     <!-- NAV -->
     <div class="nav">
         <div>
-            <p class="gray">DS 4200 Final Project</p>
-            <a href="index.html"><h1>An Analysis of Flight Delays in the US</h1></a>
+            <a href="index.html">
+                <h1>An Analysis of Flight Delays in the US</h1>
+            </a>
+            <h1 class="gray">DS 4200 Final Project</h1>
         </div>
         <div class="nav-items">
-            <a href="index.html" class="green">Project</a>
-            <a href="about.html">About</a>
+            <a href="index.html" class="selected-nav">Project</a>
+            <a href="about.html" class="nav-item">About</a>
         </div>
     </div>
+
 
     <br />
 
 
 
-    <!-- MEMBERS -->
-    <p class="subheading gray">Group members: Rebecca Choi, Daniel Joung, Iverson Qiu</p>
-
-    <br /><br />
-
 
 
     <!-- GRAPHS -->
     <div class="all-graphs-cont">
+
         <div class="graph-cont">
             <p class="subheading gray">Total Arrival Delays in States</p>
             <iframe src="graphs/airtraffic_chart.html" style="width: 100%; height: 500px; zoom: 1;"></iframe>
-            <p>For every year except 2020 (due to COVID where travel was all time low), you can see that at least 20% of arrivals had some sort of air traffic incident involved whether it be delays, cancellations, or divertions. While 20% might not seem super high in a general perspective, considering the number of flights that take place on a yearly basis 20% is a considerable issues for the airline industry in the US. Not only does this lead to customer dissatisfaction but also leads to immense profit loss within companies.</p>
+            <p>For every year except 2020 (due to COVID where travel was all time low), you can see that at least 20% of
+                arrivals had some sort of air traffic incident involved whether it be delays, cancellations, or
+                divertions. While 20% might not seem super high in a general perspective, considering the number of
+                flights that take place on a yearly basis 20% is a considerable issues for the airline industry in the
+                US. Not only does this lead to customer dissatisfaction but also leads to immense profit loss within
+                companies.</p>
         </div>
 
         <div class="graph-cont">
             <p class="subheading gray">Arrival Delays By Carrier</p>
-            <iframe src="graphs/Arrival Delays Per Carrier.html" style="width: 100%; height: 715px; zoom: 0.75;"></iframe>
+            <iframe src="graphs/Arrival Delays Per Carrier.html"
+                style="width: 100%; height: 715px; zoom: 0.75;"></iframe>
             <p>You can see from the graph that carriers such as Southwest, American, Skywest, and Delta Air almost
                 consistently
                 on the top every year for most delay data. For airlines like Delta and American that are popular amongst
@@ -60,21 +65,25 @@
         </div>
 
         <div class="graph-cont">
-            <p class="subheading gray">Iverson graph</p>
+            <p class="subheading gray">Top 20 Airports in Flight Delays</p>
             <img src="graphs/d3_graph.png" width: 100%></img>
-            <p>Unsurprisingly, major international hubs like Atlanta (ATL), Chicago O’Hare (ORD), and Dallas-Fort Worth (DFW) rank at the top, as these airports handle an enormous volume of flights daily. Interestingly, some mid-sized airports also appear in the top 20, likely due to regional congestion or weather-related disruptions. The chart reinforces the idea that the busiest airports tend to have the most delays, but other factors like geography and airline scheduling inefficiencies also play a significant role in delay patterns.</p>
-        </div>
-
-        <div class="graph-cont">
-            <p class="subheading gray">Regional Analysis Delay Stacked Bar Charts</p>
-            <img src="graphs/Total Arrival Delay Minutes by Region.png" width: 100%></img>
-            <p>We can see that similar to the low correlation in the heatmap, security delay doesn’t even make up 10% of recorded delays for any region. Interestingly though, the weather doesn’t seem too big of a contributor just based off this stacked bar chart. The Midwest and West Coast have the biggest stacks for weather which makes sense as these areas of America have states with more extreme weather conditions. Similar to the heatmap results, carrier, NAS, and late aircraft delays make up approximately 80% of all delay data for each region. This further proves that operational efficiencies like scheduling, maintenance, and carrier management are the biggest issues that contribute delays nationwide and this is a big issue especially in the West coast as seen through the tallest bar within this chart.</p>
+            <p>Unsurprisingly, major international hubs like Atlanta (ATL), Chicago O’Hare (ORD), and Dallas-Fort Worth
+                (DFW) rank at the top, as these airports handle an enormous volume of flights daily. Interestingly, some
+                mid-sized airports also appear in the top 20, likely due to regional congestion or weather-related
+                disruptions. The chart reinforces the idea that the busiest airports tend to have the most delays, but
+                other factors like geography and airline scheduling inefficiencies also play a significant role in delay
+                patterns.</p>
         </div>
 
         <div class="graph-cont">
             <p class="subheading gray">Total Arrival Delays in States</p>
             <iframe src="graphs/Delays by State.html" style="width: 100%; height: 715px; zoom: 0.75;"></iframe>
-            <p>As expected, states like California and Texas which are heavily populated and also have major well-known airports that serve millions of passengers annually. To our surprise, Illinois is indicated to be the 4th highest overall delay concentrated state compared to a state like New York. Interestingly enough, these states California, Texas, Illinois, and Florida are states with popular national airports but also lots of extreme weather conditions which makes sense why these states are delay prone with airflights.</p>
+            <p>As expected, states like California and Texas which are heavily populated and also have major well-known
+                airports that serve millions of passengers annually. To our surprise, Illinois is indicated to be the
+                4th highest overall delay concentrated state compared to a state like New York. Interestingly enough,
+                these states California, Texas, Illinois, and Florida are states with popular national airports but also
+                lots of extreme weather conditions which makes sense why these states are delay prone with airflights.
+            </p>
         </div>
 
         <div class="graph-cont">
@@ -94,20 +103,57 @@
 
         <div class="graph-cont">
             <p class="subheading gray">Delays Count by State Per Year</p>
-            <iframe src="graphs/Delays Count by State Per Year.html" style="width: 100%; height: 715px; zoom: 0.75;"></iframe>
-            <p>California is constantly the number 1 in air traffic except 2020, which is due to covid when international regulations tightened for flights, and a huge amount of California flights are international. On the other hand, Texas has more domestic travels which is why 2020 there is more air traffic. For most other states other than the 4 mentioned in the overall graph, there isn’t much change in air traffic throughout the years with exceptions such as North Carolina or Georgia having increases in travel for 1 year then going back to their average delay.</p>
+            <iframe src="graphs/Delays Count by State Per Year.html"
+                style="width: 100%; height: 715px; zoom: 0.75;"></iframe>
+            <p>California is constantly the number 1 in air traffic except 2020, which is due to covid when
+                international regulations tightened for flights, and a huge amount of California flights are
+                international. On the other hand, Texas has more domestic travels which is why 2020 there is more air
+                traffic. For most other states other than the 4 mentioned in the overall graph, there isn’t much change
+                in air traffic throughout the years with exceptions such as North Carolina or Georgia having increases
+                in travel for 1 year then going back to their average delay.</p>
+        </div>
+
+        <div class="graph-cont">
+            <p class="subheading gray">Regional Analysis Delay Stacked Bar Charts</p>
+            <img src="graphs/Total Arrival Delay Minutes by Region.png" width: 100%></img>
+            <p>We can see that similar to the low correlation in the heatmap, security delay doesn’t even make up 10% of
+                recorded delays for any region. Interestingly though, the weather doesn’t seem too big of a contributor
+                just based off this stacked bar chart. The Midwest and West Coast have the biggest stacks for weather
+                which makes sense as these areas of America have states with more extreme weather conditions. Similar to
+                the heatmap results, carrier, NAS, and late aircraft delays make up approximately 80% of all delay data
+                for each region. This further proves that operational efficiencies like scheduling, maintenance, and
+                carrier management are the biggest issues that contribute delays nationwide and this is a big issue
+                especially in the West coast as seen through the tallest bar within this chart.</p>
         </div>
 
         <div class="graph-cont">
             <p class="subheading gray">Correlation HeatMap between Arrival Delays and Causes of Delays</p>
             <img src="graphs/Correlation HeatMap between Arrival Delays and Causes of Delays.png" width: 100%></img>
-            <p>We see when comparing air delay (minutes) to other specific delay features, the correlation between late aircraft is 0.96, carrier is 0.94, NAS 0.86, weather 0.77, and security 0.38. While it seems security doesn’t have much impact on airline delays, it seems that features like weather and NAS have a moderately high contribution towards higher delay times. Late aircrafts have 0.96 correlation to arrival delays which indicates that late delays from previous flights have a huge impact on arrival delays. These results suggest that while airline control factors like carrier and aircrafts have the most significant affect towards delay increases, systemic issues like traffic congestion weather conditions also have almost as significant impact. This indicates the fact that several adjustments are required for improvement whether it be operational improvements, air traffic management, enhanced weather forecasting strategies, etc. </p>
+            <p>We see when comparing air delay (minutes) to other specific delay features, the correlation between late
+                aircraft is 0.96, carrier is 0.94, NAS 0.86, weather 0.77, and security 0.38. While it seems security
+                doesn’t have much impact on airline delays, it seems that features like weather and NAS have a
+                moderately high contribution towards higher delay times. Late aircrafts have 0.96 correlation to arrival
+                delays which indicates that late delays from previous flights have a huge impact on arrival delays.
+                These results suggest that while airline control factors like carrier and aircrafts have the most
+                significant affect towards delay increases, systemic issues like traffic congestion weather conditions
+                also have almost as significant impact. This indicates the fact that several adjustments are required
+                for improvement whether it be operational improvements, air traffic management, enhanced weather
+                forecasting strategies, etc. </p>
         </div>
 
         <div class="graph-cont">
             <p class="subheading gray">Relationship Between Arrival Delays and Total Income</p>
-            <iframe src="graphs/Relationship Between Arrival Delays and Total Income.html" style="width: 100%; height: 410px; zoom: 1.25;"></iframe>
-            <p>You could also see there is an outlier of 2020 which is because of COVID where air travel regulations were strict and economic activity was at an all-time low. There is notable clustering of data within the upper right side of the data which indicates that though not for every increase in delay count, higher delay counts generally lead to moderate high income. This was interesting because initially we had 100% expected income levels to drop as more delays typically would be expected to drop income levels. However, thinking in a broader economic perspective, more delays leads to the fact that there is lots of air traffic which means strong economic activity. Even though there might be so many delays that could lead to income loss, these datapoints suggest that high economic activity sort of outweighs those losses from delays. </p>
+            <iframe src="graphs/Relationship Between Arrival Delays and Total Income.html"
+                style="width: 100%; height: 410px; zoom: 1.25;"></iframe>
+            <p>You could also see there is an outlier of 2020 which is because of COVID where air travel regulations
+                were strict and economic activity was at an all-time low. There is notable clustering of data within the
+                upper right side of the data which indicates that though not for every increase in delay count, higher
+                delay counts generally lead to moderate high income. This was interesting because initially we had 100%
+                expected income levels to drop as more delays typically would be expected to drop income levels.
+                However, thinking in a broader economic perspective, more delays leads to the fact that there is lots of
+                air traffic which means strong economic activity. Even though there might be so many delays that could
+                lead to income loss, these datapoints suggest that high economic activity sort of outweighs those losses
+                from delays. </p>
         </div>
     </div>
 
