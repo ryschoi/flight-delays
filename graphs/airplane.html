@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 20 Airport Delays</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c7be5;
+            --hover-color: #ff6b35;
+            --background-color: #f8f9fa;
+            --chart-background: #ffffff;
+            --text-color: #333333;
+            --secondary-text: #666666;
+            --tooltip-bg: rgba(0, 0, 0, 0.85);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            /* background-color: var(--background-color); */
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--secondary-text);
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        #status {
+            text-align: center;
+            color: var(--secondary-text);
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        svg {
+            /* background-color: var(--chart-background); */
+        }
+
+        .bar {
+            fill: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            fill: var(--hover-color);
+            opacity: 0.9;
+        }
+
+        .axis-label {
+            font-size: 0.8em;
+            fill: var(--secondary-text);
+        }
+
+        .tick text {
+            font-size: 0.75em;
+            fill: var(--secondary-text);
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 10px 15px;
+            background: var(--tooltip-bg);
+            color: white;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 0.85em;
+            line-height: 1.4;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.2s ease;
+        }
+
+        .tooltip strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="status">Loading data...</div>
+
+        <div class="chart-container">
+            <svg width="840" height="500"></svg>
+        </div>
+    </div>
+
+    <script>
+        // Set up dimensions and margins
+        const margin = { top: 60, right: 40, bottom: 180, left: 80 };
+        const width = 900 - margin.left - margin.right;
+        const height = 500 - margin.top - margin.bottom;
+
+        // Create SVG container
+        const svg = d3.select("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Add tooltip div
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        // Status updates
+        function updateStatus(message) {
+            d3.select("#status").text(message);
+            console.log(message);
+        }
+
+        // Load and process data
+        d3.csv("../Airline_Delay_Cause.csv")
+            .then(function (data) {
+                updateStatus("Processing data...");
+
+                // 1. Aggregate delays by airport
+                const airportDelays = {};
+
+                data.forEach(row => {
+                    if (!row.airport_name || !row.arr_del15) return;
+
+                    const airport = row.airport_name.split(":")[0].trim();
+                    const delays = +row.arr_del15;
+
+                    if (!isNaN(delays)) {
+                        airportDelays[airport] = (airportDelays[airport] || 0) + delays;
+                    }
+                });
+
+                // 2. Convert to array and sort
+                const airportData = Object.entries(airportDelays)
+                    .map(([airport, delays]) => ({ airport, delays }))
+                    .sort((a, b) => b.delays - a.delays);
+
+                // 3. Take top 20
+                const top20 = airportData.slice(0, 20);
+                updateStatus(`Showing top 20 of ${airportData.length} airports`);
+
+                // Set up scales
+                const x = d3.scaleBand()
+                    .domain(top20.map(d => d.airport))
+                    .range([0, width])
+                    .padding(0.2);
+
+                const y = d3.scaleLinear()
+                    .domain([0, d3.max(top20, d => d.delays)])
+                    .nice()
+                    .range([height, 0]);
+
+                // Add axes
+                svg.append("g")
+                    .attr("class", "x-axis")
+                    .attr("transform", `translate(0,${height})`)
+                    .call(d3.axisBottom(x))
+                    .selectAll("text")
+                    .attr("transform", "rotate(-45)")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-0.5em")
+                    .attr("dy", "0.5em");
+
+                svg.append("g")
+                    .attr("class", "y-axis")
+                    .call(d3.axisLeft(y).tickFormat(d3.format("~s")));
+
+                // Add grid lines
+                svg.append("g")
+                    .attr("class", "grid")
+                    .call(d3.axisLeft(y)
+                        .tickSize(-width)
+                        .tickFormat("")
+                    )
+                    .selectAll("line")
+                    .attr("stroke", "#e0e0e0")
+                    .attr("stroke-dasharray", "2,2");
+
+                // Add bars
+                svg.selectAll(".bar")
+                    .data(top20)
+                    .enter()
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("x", d => x(d.airport))
+                    .attr("y", d => y(d.delays))
+                    .attr("width", x.bandwidth())
+                    .attr("height", d => height - y(d.delays))
+                    .on("mouseover", function (event, d) {
+                        d3.select(this)
+                            .attr("fill", "#ff6b35")
+                            .attr("opacity", 0.9);
+
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", 0.95);
+
+                        tooltip.html(`
+                            <strong>${d.airport}</strong>
+                            ${d3.format(",")(d.delays)} delayed flights
+                        `)
+                            .style("left", `${event.pageX + 15}px`)
+                            .style("top", `${event.pageY - 30}px`);
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this)
+                            .attr("fill", "#2c7be5")
+                            .attr("opacity", 1);
+
+                        tooltip.transition()
+                            .duration(300)
+                            .style("opacity", 0);
+                    });
+
+                // Add labels
+                svg.append("text")
+                    .attr("class", "axis-label")
+                    .attr("x", width / 2)
+                    .attr("y", height + margin.bottom - 70)
+                    .style("text-anchor", "middle")
+                    .text("Airport Names");
+
+                svg.append("text")
+                    .attr("class", "axis-label")
+                    .attr("transform", "rotate(-90)")
+                    .attr("x", -height / 2)
+                    .attr("y", -margin.left + 30)
+                    .style("text-anchor", "middle")
+                    .text("Number of Delayed Flights");
+
+                svg.append("text")
+                    .attr("class", "chart-title")
+                    .attr("x", width / 2)
+                    .attr("y", -30)
+                    .style("text-anchor", "middle")
+                    .text("Top 20 Airports with the Most Delayed Flights");
+
+            })
+            .catch(error => {
+                updateStatus("Error loading data: " + error.message);
+                console.error("Error:", error);
+            });
+    </script>
+</body>
+
+</html>
