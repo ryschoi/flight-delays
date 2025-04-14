@@ -127,14 +127,13 @@ h1 {
   color: white;
 }
 
-
-.all-graphs-cont {
+.graph-section-cont {
   display: flex;
   flex-direction: column;
   gap: 120px;
 }
 
-.graph-cont {
+.graph-item {
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -162,7 +161,7 @@ iframe {
 }
 
 .iverson-graph {
-  height: 500px;
+  height: 520px;
   zoom: 0.9;
 }
 
