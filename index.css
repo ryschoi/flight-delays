@@ -127,6 +127,12 @@ h1 {
   color: white;
 }
 
+.graph-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .graph-section-cont {
   display: flex;
   flex-direction: column;
@@ -173,12 +179,6 @@ iframe {
 h2 {
   font-size: 22px;
   font-weight: 750;
-}
-
-.graph-section {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
 }
 
 
