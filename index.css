@@ -32,8 +32,8 @@ body {
   margin: 0;
 
   /* TEXT */
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 22px;
   color: #222222;
 
@@ -169,6 +169,17 @@ iframe {
 .caption {
   font-weight: 400;
   font-style: italic;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.graph-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 
